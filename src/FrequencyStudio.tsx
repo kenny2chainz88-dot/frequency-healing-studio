@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import './studio.css';
 
 const Icon = {
@@ -193,7 +193,7 @@ export default function FrequencyHealingStudio() {
 
   const initAudio = useCallback(() => {
     if (!audioCtxRef.current) {
-      const Ctx = window.AudioContext || (window as any).webkitAudioContext;
+      const Ctx = window.AudioContext || (window as unknown as Record<string, typeof AudioContext>).webkitAudioContext;
       audioCtxRef.current = new Ctx();
       const ctx = audioCtxRef.current;
       masterGainRef.current = ctx.createGain();
@@ -221,7 +221,7 @@ export default function FrequencyHealingStudio() {
     voice.mainGain.gain.cancelScheduledValues(ctx.currentTime);
     voice.mainGain.gain.setValueAtTime(voice.mainGain.gain.value, ctx.currentTime);
     voice.mainGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
-    setTimeout(() => { voice.allOscs.forEach(o => { try { o.stop(); o.disconnect(); } catch (_) {} }); try { voice.mainGain.disconnect(); } catch (_) {} }, 350);
+    setTimeout(() => { voice.allOscs.forEach(o => { try { o.stop(); o.disconnect(); } catch { /* expected during cleanup */ } }); try { voice.mainGain.disconnect(); } catch { /* expected */ } }, 350);
     voices.current.delete(hz);
     setActiveNotes(p => { const n = new Set(p); n.delete(hz); if (!n.size) setIsPlaying(false); return n; });
   }, []);
@@ -229,8 +229,8 @@ export default function FrequencyHealingStudio() {
   const stopAll = useCallback(() => {
     const all = [...voices.current.entries()]; voices.current.clear();
     all.forEach(([, v]) => {
-      if (audioCtxRef.current) try { v.mainGain.gain.setValueAtTime(0, audioCtxRef.current.currentTime); } catch (_) {}
-      setTimeout(() => { v.allOscs.forEach(o => { try { o.stop(); o.disconnect(); } catch (_) {} }); try { v.mainGain.disconnect(); } catch (_) {} }, 50);
+      if (audioCtxRef.current) try { v.mainGain.gain.setValueAtTime(0, audioCtxRef.current.currentTime); } catch { /* expected */ }
+      setTimeout(() => { v.allOscs.forEach(o => { try { o.stop(); o.disconnect(); } catch { /* expected during cleanup */ } }); try { v.mainGain.disconnect(); } catch { /* expected */ } }, 50);
     });
     setActiveNotes(new Set()); setBinauralActive(false); setActiveBW(null); setIsPlaying(false);
   }, []);
