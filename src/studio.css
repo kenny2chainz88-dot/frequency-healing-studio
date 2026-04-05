@@ -70,6 +70,11 @@ html, body, #root {
   background-clip: text;
   line-height: 1;
 }
+.title-stack { display: flex; align-items: baseline; gap: 8px; }
+.author-tag {
+  font-size: 10px; font-weight: 700; color: var(--indigo-light);
+  text-transform: lowercase; opacity: 0.8; font-style: italic;
+}
 .studio-subtitle {
   font-size: 10px;
   color: var(--text-muted);

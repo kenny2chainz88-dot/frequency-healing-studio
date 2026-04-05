@@ -313,7 +313,10 @@ export default function FrequencyHealingStudio() {
       {/* ── HEADER ── */}
       <header className="studio-header">
         <div className="header-left">
-          <h1 className="studio-title">Vibrational Studio</h1>
+          <div className="title-stack">
+            <h1 className="studio-title">Vibrational Studio</h1>
+            <span className="author-tag">by kenny</span>
+          </div>
           <span className="studio-subtitle">
             <strong>A–L</strong> Solfeggio &nbsp;·&nbsp; <strong>Q–I</strong> Organs &nbsp;·&nbsp; <strong>Z–P</strong> Cosmic &nbsp;·&nbsp; <strong>1–0</strong> Instrument
           </span>
