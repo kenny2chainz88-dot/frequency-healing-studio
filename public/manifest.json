@@ -1,0 +1,15 @@
+{
+  "short_name": "FreqStudio",
+  "name": "Frequency Healing Studio",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#09090b",
+  "background_color": "#09090b"
+}

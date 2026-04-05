@@ -1,7 +1,21 @@
 {
-  "name": "frequency-studio",
+  "name": "frequency-healing-studio",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "A professional-grade vibrational sound healing studio. Explore Solfeggio frequencies, organ resonance, celestial vibrations, and binaural beats for meditation and healing.",
+  "author": "David",
+  "license": "MIT",
+  "keywords": [
+    "frequency-healing",
+    "solfeggio",
+    "binaural-beats",
+    "sound-therapy",
+    "meditation",
+    "vibrational-studio",
+    "audio-synthesis",
+    "react",
+    "vite"
+  ],
   "type": "module",
   "scripts": {
     "dev": "vite",
